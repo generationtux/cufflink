@@ -27,6 +27,9 @@
   ],
   "author": "Gentux",
   "license": "MIT",
+  "bin": {
+    "cufflink": "./index.js"
+  },
   "bugs": {
     "url": "https://github.com/generationtux/cufflink/issues"
   },
