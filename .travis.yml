@@ -8,6 +8,6 @@ install:
 
 script:
   - npm test
-  - npm cover
+  - npm run cover
 
 after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
