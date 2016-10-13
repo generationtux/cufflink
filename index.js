@@ -1,8 +1,12 @@
 #!/usr/bin/env node
-'use strict';
 
 module.exports = function(number, locale){
     return number.toLocaleString(locale);
 };
 
-console.log('Hello, world!');
+const program = require('commander');
+
+program
+    .version('0.0.1')
+    .command('create', 'Create object')
+    .parse(process.argv);
