@@ -1,0 +1,34 @@
+{
+  "name": "cufflink",
+  "version": "0.0.1",
+  "description": "A command tool to help generate seed data based on your object schema in your applications",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/generationtux/cufflink.git"
+  },
+  "keywords": [
+    "gentux",
+    "database",
+    "seeder",
+    "object",
+    "schema",
+    "fixture",
+    "generation",
+    "tux",
+    "seed",
+    "table"
+  ],
+  "author": "Gentux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/generationtux/cufflink/issues"
+  },
+  "homepage": "https://github.com/generationtux/cufflink#readme"
+}
