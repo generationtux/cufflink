@@ -26,7 +26,7 @@ Highlights
 System Requirements
 -------
 
-You need **Node >= 4.4.0**
+You need **Node >= 5.0.0**
 
 Installation
 -------
