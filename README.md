@@ -1,12 +1,7 @@
 # cufflink
 A command tool to help generate seed data based on your object schema in your applications
 
-[![Latest Version](https://img.shields.io/github/release/thephpleague/csv.svg?style=flat-square)](https://github.com/generationtux/cufflink/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/thephpleague/csv/master.svg?style=flat-square)](https://travis-ci.org/thephpleague/csv)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/thephpleague/csv.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/csv/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/csv.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/csv)
-[![Total Downloads](https://img.shields.io/packagist/dt/league/csv.svg?style=flat-square)](https://packagist.org/packages/league/csv)
+[![Build Status](https://travis-ci.org/generationtux/cufflink.svg?branch=master)](https://travis-ci.org/generationtux/cufflink)
 
 Cufflink is a simple npm package to help seed data for API tests. Cufflink will seed your databases and create a json file with the results for a consistent way to test your API.
 
