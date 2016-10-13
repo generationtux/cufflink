@@ -30,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/generationtux/cufflink/issues"
   },
-  "homepage": "https://github.com/generationtux/cufflink#readme"
+  "homepage": "https://github.com/generationtux/cufflink#readme",
+  "engines": {
+    "node": ">=4.4.0"
+  }
 }
