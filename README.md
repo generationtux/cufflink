@@ -2,6 +2,7 @@
 A command tool to help generate seed data based on your object schema in your applications
 
 [![Build Status](https://travis-ci.org/generationtux/cufflink.svg?branch=master)](https://travis-ci.org/generationtux/cufflink)
+[![Coverage Status](https://coveralls.io/repos/github/generationtux/cufflink/badge.svg?branch=master)](https://coveralls.io/github/generationtux/cufflink?branch=master)
 
 Cufflink is a simple npm package to help seed data for API tests. Cufflink will seed your databases and create a json file with the results for a consistent way to test your API.
 
