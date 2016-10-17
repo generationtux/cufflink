@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-module.exports = function(number, locale){
-    return number.toLocaleString(locale);
-};
-
 const program = require('commander');
 
 program
