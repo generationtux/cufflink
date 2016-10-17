@@ -38,9 +38,11 @@
   "engines": {
     "node": ">=5.0.0"
   },
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
   "devDependencies": {
     "assert": "^1.4.1",
-    "commander": "^2.9.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.14",
     "istanbul": "^0.4.5",
