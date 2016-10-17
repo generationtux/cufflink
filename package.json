@@ -29,7 +29,7 @@
   "author": "Gentux",
   "license": "MIT",
   "bin": {
-    "cufflink": "./src/cufflink"
+    "cufflink": "./bin/cufflink.js"
   },
   "bugs": {
     "url": "https://github.com/generationtux/cufflink/issues"
