@@ -1,6 +1,6 @@
 {
   "name": "cufflink",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "A command tool to help generate seed data based on your object schema in your applications",
   "main": "index.js",
   "directories": {
