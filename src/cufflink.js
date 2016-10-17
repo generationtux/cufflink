@@ -2,7 +2,7 @@
 
 process.env.FORCE_COLOR = true;
 
-const program = require('../node_modules/commander');
+const program = require('commander');
 const package = require('../package.json');
 
 program
