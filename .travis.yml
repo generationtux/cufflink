@@ -10,4 +10,9 @@ script:
   - npm test
   - npm run cover
 
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
 after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
