@@ -39,7 +39,8 @@
     "node": ">=5.0.0"
   },
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "ora": "^0.3.0"
   },
   "devDependencies": {
     "assert": "^1.4.1",
