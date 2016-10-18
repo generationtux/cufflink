@@ -1,47 +1,79 @@
+'use strict'
+
 let expect = require('chai').expect;
 let DepGraph = require('dependency-graph').DepGraph;
 
 let CreateCommand = require('../src/CreateCommand').CreateCommand;
 
 describe('Create command tests', () => {
-    it('should return graph', () => {
-        let expectedGraph = new DepGraph();
+    it('should write results from driver to file', () => {
 
-        let data = {
-            metaData: {
-
+        let DependencyGraph = {
+            run: function () {
+                return ['Account', 'Contact']
             }
-        }
-        expectedGraph.addNode('foo', data);
+        };
 
-        let graphBuilder =  {
-            build: function () {
-                return expectedGraph;
-            }
-        }
-
-        let fooDriver = {
+        let AccountDriver = {
             create: function () {
-
+                return ({
+                    'id': 1,
+                    'firstName': 'Bob',
+                    'lastName': 'Jones',
+                    'email': 'bob@jones.com',
+                });
             }
-        }
+        };
 
-        let expectedDrivers = [
-            {
-                foo: fooDriver
+        let ContactDriver = {
+            create: function () {
+                return ({
+                    'id': 1,
+                    'firstName': 'Bob',
+                    'lastName': 'Jones',
+                    'email': 'bob@jones.com',
+                    'accountId': 1
+                });
             }
-        ];
+        };
 
-        let driverLocator = {
+        let drivers = {
+            'Account': AccountDriver,
+            'Contact': ContactDriver
+        };
+
+        let DriverLocator = {
             drivers: function () {
-                return expectedDrivers;
+                return drivers;
             }
         }
 
-        let createCommand = new CreateCommand(graphBuilder, driverLocator);
+        let dataExpectedToBeWrittenToFile;
 
-        let actualGraph = createCommand.run();
+        let fs = {
+            writeFileSync: function (fileName, data) {
+                dataExpectedToBeWrittenToFile = data;
+            }
+        }
 
-        expect(actualGraph).to.equal(expectedGraph);
+        let createCommand = new CreateCommand(DependencyGraph, DriverLocator, fs);
+
+        createCommand.run();
+
+        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
+            {
+                'id': 1,
+                'firstName': 'Bob',
+                'lastName': 'Jones',
+                'email': 'bob@jones.com',
+            },
+            {
+                'id': 1,
+                'firstName': 'Bob',
+                'lastName': 'Jones',
+                'email': 'bob@jones.com',
+                'accountId': 1
+            }
+        ]));
     });
 });
