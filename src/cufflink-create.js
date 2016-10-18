@@ -1,28 +1,29 @@
-#!/usr/bin/env node
-'use strict';
+let faker = require('faker');
 
+var randomName = faker.name.findName();
+console.log(randomName);
 
-const create = function() {};
+const create = () => {
+};
 
-function buildDependencyTree(){
+function buildDependencyTree() {
     var graph = {};
 
     return graph;
 }
 
-function getDrivers(){
+function getDrivers() {
 
 }
 
-function getObjects(){
+function getObjects() {
 
 }
 
-create.prototype.setup = function(objectName, cb) {
-    var graph = buildDependencyTree();
-
-}
-
-create.prototype.seedObject = function(cb){
-
-}
+// create.prototype.setup = (objectName, cb) => {
+//     var graph = buildDependencyTree();
+// }
+//
+// create.prototype.seedObject = (cb) => {
+//
+// }

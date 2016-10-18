@@ -1,6 +1,6 @@
 {
   "name": "cufflink",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "A command tool to help generate seed data based on your object schema in your applications",
   "main": "index.js",
   "directories": {
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
+    "faker": "^3.1.0",
     "ora": "^0.3.0"
   },
   "devDependencies": {
