@@ -1,1 +1,1 @@
-{"customer":{"name":"Bob Dole"},"cart":{"items":["Pizza"]},"item":{"name":"Pizza","price":1}}
+[{"type":"customer","properties":{"name":"Bob Dole"}},{"type":"cart","properties":{"items":["Bob Dole"]}}]

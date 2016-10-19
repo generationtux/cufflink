@@ -10,7 +10,7 @@ describe('Create command tests', () => {
 
         let DependencyGraph = {
             run: function () {
-                return ['Account', 'Contact']
+                return [ 'Account', 'Contact' ]
             }
         };
 
@@ -19,7 +19,7 @@ describe('Create command tests', () => {
 
                 return new Promise((resolve) => {
                     resolve({
-                        'type': 'contact',
+                        'type': 'account',
                         'properties': {
                             'id': 1,
                             'firstName': 'Bob',
@@ -70,28 +70,29 @@ describe('Create command tests', () => {
 
         let createCommand = new CreateCommand(DependencyGraph, DriverLocator, fs);
 
-        createCommand.run();
+        createCommand.run().then(() => {
+            expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
+                {
+                    'type': 'account',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com'
+                    }
+                },
+                {
+                    'type': 'contact',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com',
+                        'accountId': 1
+                    }
+                }
+            ]));
+        });
 
-        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
-            {
-                'type': 'account',
-                'properties': {
-                    'id': 1,
-                    'firstName': 'Bob',
-                    'lastName': 'Jones',
-                    'email': 'bob@jones.com'
-                }
-            },
-            {
-                'type': 'contact',
-                'properties': {
-                    'id': 1,
-                    'firstName': 'Bob',
-                    'lastName': 'Jones',
-                    'email': 'bob@jones.com',
-                    'accountId': 1
-                }
-            }
-        ]));
     });
 });

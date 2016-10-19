@@ -6,14 +6,22 @@ class CreateCommand {
         this.fs = fs;
         this.driversToExecute = [];
         process.results = [];
+        console.log(process);
     }
 
-    runRecursive() {
-        let driverToExecute = this.driversToExcute[0];
-        return driverToExecute.create().then((results) => {
+    runRecursive(promise = null) {
+        if(this.driversToExecute.length == 0){
+            return promise.then((results) => {
+                process.results.push(results);
+            });
+        }
+
+        let driverToExecute = this.driversToExecute[0];
+        promise = driverToExecute.create();
+        return promise.then((results) => {
             this.driversToExecute.shift();
-            process.results.append(results);
-            this.runRecursive();
+            process.results.push(results);
+            this.runRecursive(promise);
         })
     }
 
@@ -27,7 +35,7 @@ class CreateCommand {
             let driver = drivers[lowerElement];
             this.driversToExecute.push(driver);
         });
-        this.runRecursive().then(() => {
+        return this.runRecursive().then(() => {
             this.fs.writeFileSync('./seededData.json', JSON.stringify(process.results));
         });
     }
