@@ -20,7 +20,7 @@ describe('Dependency Graph Tests', () => {
             {
                 "name": "SalesOrder",
                 "metadata": {
-                    'dependencies': ['Contact','Account','Event']
+                    'dependencies': ['Contact', 'Account', 'Event']
                 }
             },
             {
@@ -33,6 +33,6 @@ describe('Dependency Graph Tests', () => {
         let dependencyGraph = new DependencyGraph(objectsToSeed);
         expect(dependencyGraph.objectsToSeed).to.equal(objectsToSeed);
         let result = dependencyGraph.run();
-        expect(result).to.deep.equal(['Account','Contact','Event','SalesOrder']);
+        expect(result).to.deep.equal(['Account', 'Contact', 'Event', 'SalesOrder']);
     });
 });
