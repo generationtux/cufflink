@@ -3,7 +3,7 @@
 let expect = require('chai').expect;
 let DepGraph = require('dependency-graph').DepGraph;
 
-let CreateCommand = require('../src/CreateCommand').CreateCommand;
+let CreateCommand = require('../src/CreateCommand');
 
 describe('Create command tests', () => {
     it('should write results from driver to file', () => {

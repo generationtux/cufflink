@@ -1,7 +1,7 @@
 let expect = require('chai').expect;
 let fs = require('fs');
 let mockeryPartial = require('mockery-partial');
-let DriverLocator = require('../src/DriverLocator').DriverLocator;
+let DriverLocator = require('../src/DriverLocator');
 let ContactDriver = require('./MockDrivers/ContactDriver').ContactDriver;
 let EventDriver = require('./MockDrivers/EventDriver').EventDriver;
 
