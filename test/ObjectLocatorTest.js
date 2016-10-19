@@ -2,7 +2,7 @@ let fs = require('fs');
 let objLoc = require('../src/ObjectLocator');
 var expect = require('chai').expect;
 
-describe('Dependency Graph Tests', () => {
+describe('Object Locator Tests', () => {
     it('Should be constructed and return the correct order', () => {
         let obj = new objLoc(fs, "Item");
         let json = obj.run();
