@@ -16,7 +16,7 @@ describe('Object Locator Tests', () => {
         expect(obj.run).to.throw(Error);
     });
 
-    it('should return error on json file being empty', () => {
+    it('should return error on dependencies not existing', () => {
         let obj = new objLoc(fs, "BadCustomer");
         expect(() => {
             obj.run()
@@ -24,7 +24,7 @@ describe('Object Locator Tests', () => {
     });
 
 
-    it('should return error on json file not having dependencies', () => {
+    it('should return error on dependencies not being an array', () => {
         let obj = new objLoc(fs, "BadCart");
         expect(() => {
             obj.run()
