@@ -60,20 +60,20 @@ describe('Create command tests', () => {
 
         createCommand.run();
 
-        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
-            {
+        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify({
+            'Account': {
                 'id': 1,
                 'firstName': 'Bob',
                 'lastName': 'Jones',
                 'email': 'bob@jones.com',
             },
-            {
+            'Contact': {
                 'id': 1,
                 'firstName': 'Bob',
                 'lastName': 'Jones',
                 'email': 'bob@jones.com',
                 'accountId': 1
             }
-        ]));
+        }));
     });
 });
