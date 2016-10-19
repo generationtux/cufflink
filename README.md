@@ -50,21 +50,24 @@ The `objects` directory will contain the schemas for your objects
 
 Ex:
 ```
-cart: {
-    fields: [
-        {
-            name: id,
-            type: int
-        },
-        {
-            name: customerId,
-            type: int
+    {
+        "type": "customer",
+        "properties": {
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "int"
+                },
+                {
+                    "name": "customerId",
+                    "type": "int"
+                }
+            ]
+            "dependencies": [
+                "customer"
+            ]
         }
-    ]
-    dependencies: [
-        customer
-    ]
-}
+    }
 ```
 
 The `drivers` directory will contain the drivers to persist your objects to your databases.
