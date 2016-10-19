@@ -1,6 +1,6 @@
 let ObjectLocator = require('./ObjectLocator');
 let DependencyGraph = require('./DependencyGraph');
-let DriverLocator = require('./Driver/DriverLocator');
+let DriverLocator = require('./DriverLocator');
 let CreateCommand = require('./CreateCommand');
 let fs = require('fs');
 let objectName = process.argv[2];
