@@ -9,11 +9,11 @@ class CreateCommand {
         let graph = this.dependencyGraph.run();
         let drivers = this.driverLocator.drivers();
 
-        let result = [];
+        let result = {};
 
         graph.forEach((graphElement) => {
             let driver = drivers[graphElement];
-            result.push(driver.create());
+            result[graphElement] = driver.create();
         });
 
         this.fs.writeFileSync('./seededData.json', JSON.stringify(result));
