@@ -9,6 +9,22 @@ describe('Dependency Graph Tests', () => {
         expect(JSON.stringify(json)).to.contain('Item');
         expect(JSON.stringify(json)).to.contain('Cart');
         expect(JSON.stringify(json)).to.contain('Customer');
-
     });
+
+    it('should return error on json file not existing', () => {
+        let obj = new objLoc(fs, "BadItem");
+        expect(obj.run).to.throw(Error);
+    });
+
+    it('should return error on json file being empty', () => {
+        let obj = new objLoc(fs, "BadCart");
+        expect(obj.run).to.throw(Error);
+    });
+
+
+    it('should return error on json file not having dependencies', () => {
+        let obj = new objLoc(fs, "BadCart");
+        expect(obj.run).to.throw(Error);
+    });
+
 });
