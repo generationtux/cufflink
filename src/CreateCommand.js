@@ -1,4 +1,5 @@
 class CreateCommand {
+
     constructor(dependencyGraph, driverLocator, fs) {
         this.dependencyGraph = dependencyGraph;
         this.driverLocator = driverLocator;
@@ -19,6 +20,7 @@ class CreateCommand {
 
         this.fs.writeFileSync('./seededData.json', JSON.stringify(result));
     }
+
 }
 
 module.exports = CreateCommand;
