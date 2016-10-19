@@ -23,7 +23,6 @@ describe('Object Locator Tests', () => {
         }).to.throw("Json for the file BadCustomer must have a dependency array, if none provide a blank array");
     });
 
-
     it('should return error on dependencies not being an array', () => {
         let obj = new objLoc(fs, "BadCart");
         expect(() => {

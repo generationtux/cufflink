@@ -16,4 +16,5 @@ program
  */
 program
     .command('create [dataObject]', 'Generate seed data').alias('c')
+    .parse(process.argv);
 
