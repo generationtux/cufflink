@@ -1,6 +1,6 @@
 {
   "name": "cufflink",
-  "version": "0.0.25",
+  "version": "0.0.24",
   "description": "A command tool to help generate seed data based on your object schema in your applications",
   "main": "src/cufflink.js",
   "directories": {
@@ -28,6 +28,9 @@
   ],
   "author": "Gentux",
   "license": "MIT",
+  "bin": {
+    "cufflink": "./src/cufflink.js"
+  },
   "bugs": {
     "url": "https://github.com/generationtux/cufflink/issues"
   },
