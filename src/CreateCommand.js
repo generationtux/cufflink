@@ -21,4 +21,4 @@ class CreateCommand {
     }
 }
 
-module.exports.CreateCommand = CreateCommand;
+module.exports = CreateCommand;

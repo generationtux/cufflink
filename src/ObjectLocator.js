@@ -19,7 +19,6 @@ class ObjectLocator {
             fileJson = JSON.parse(fileData);
         }
         if (fileJson != null && fileJson != {}) {
-            console.log(fileJson.dependencies);
             if (fileJson.dependencies == null) {
                 throw new Error(`Json for the file ${dependencyName} must have a dependency array, if none provide a blank array`);
             }

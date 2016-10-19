@@ -36,4 +36,4 @@ class DriverLocator
 }
 
 
-module.exports.DriverLocator = DriverLocator;
+module.exports = DriverLocator;
