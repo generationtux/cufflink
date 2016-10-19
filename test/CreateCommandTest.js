@@ -38,8 +38,8 @@ describe('Create command tests', () => {
         };
 
         let drivers = {
-            'Account': AccountDriver,
-            'Contact': ContactDriver
+            'account': AccountDriver,
+            'contact': ContactDriver
         };
 
         let DriverLocator = {
@@ -60,20 +60,20 @@ describe('Create command tests', () => {
 
         createCommand.run();
 
-        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
-            {
+        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify({
+            'account': {
                 'id': 1,
                 'firstName': 'Bob',
                 'lastName': 'Jones',
                 'email': 'bob@jones.com',
             },
-            {
+            'contact': {
                 'id': 1,
                 'firstName': 'Bob',
                 'lastName': 'Jones',
                 'email': 'bob@jones.com',
                 'accountId': 1
             }
-        ]));
+        }));
     });
 });
