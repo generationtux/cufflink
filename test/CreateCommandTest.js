@@ -38,8 +38,8 @@ describe('Create command tests', () => {
         };
 
         let drivers = {
-            'Account': AccountDriver,
-            'Contact': ContactDriver
+            'account': AccountDriver,
+            'contact': ContactDriver
         };
 
         let DriverLocator = {

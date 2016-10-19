@@ -12,8 +12,9 @@ class CreateCommand {
         let result = {};
 
         graph.forEach((graphElement) => {
-            let driver = drivers[graphElement];
-            result[graphElement.toLowerCase()] = driver.create();
+            let lowerElement = graphElement.toLowerCase();
+            let driver = drivers[lowerElement];
+            result[lowerElement] = driver.create();
         });
 
         this.fs.writeFileSync('./seededData.json', JSON.stringify(result));
