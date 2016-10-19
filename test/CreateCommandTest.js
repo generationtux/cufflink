@@ -17,10 +17,13 @@ describe('Create command tests', () => {
         let AccountDriver = {
             create: function () {
                 return ({
-                    'id': 1,
-                    'firstName': 'Bob',
-                    'lastName': 'Jones',
-                    'email': 'bob@jones.com',
+                    'type': 'account',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com'
+                    }
                 });
             }
         };
@@ -28,11 +31,14 @@ describe('Create command tests', () => {
         let ContactDriver = {
             create: function () {
                 return ({
-                    'id': 1,
-                    'firstName': 'Bob',
-                    'lastName': 'Jones',
-                    'email': 'bob@jones.com',
-                    'accountId': 1
+                    'type': 'contact',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com',
+                        'accountId': 1
+                    }
                 });
             }
         };
@@ -60,20 +66,26 @@ describe('Create command tests', () => {
 
         createCommand.run();
 
-        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify({
-            'account': {
-                'id': 1,
-                'firstName': 'Bob',
-                'lastName': 'Jones',
-                'email': 'bob@jones.com',
+        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
+            {
+                'type': 'account',
+                'properties': {
+                    'id': 1,
+                    'firstName': 'Bob',
+                    'lastName': 'Jones',
+                    'email': 'bob@jones.com'
+                }
             },
-            'contact': {
-                'id': 1,
-                'firstName': 'Bob',
-                'lastName': 'Jones',
-                'email': 'bob@jones.com',
-                'accountId': 1
+            {
+                'type': 'contact',
+                'properties': {
+                    'id': 1,
+                    'firstName': 'Bob',
+                    'lastName': 'Jones',
+                    'email': 'bob@jones.com',
+                    'accountId': 1
+                }
             }
-        }));
+        ]));
     });
 });
