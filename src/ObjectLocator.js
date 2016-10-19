@@ -13,7 +13,7 @@ class ObjectLocator {
     }
 
     loadAllObjects(dependencyName) {
-        let fileData = this.fs.readFileSync(__dirname + `/${this.objectDirectoryName}/${dependencyName}.json`);
+        let fileData = this.fs.readFileSync(process.cwd() + `/${this.objectDirectoryName}/${dependencyName}.json`);
         let fileJson = {};
         if (fileData != null) {
             fileJson = JSON.parse(fileData);
@@ -27,7 +27,9 @@ class ObjectLocator {
             let dependencies = fileJson.dependencies;
             if (dependencies instanceof Array) {
                 dependencies.forEach((dependency) => {
-                    this.loadAllObjects(dependency);
+                    if(this.objects.find(x => x.name == dependency) == null) {
+                        this.loadAllObjects(dependency);
+                    }
                 });
             } else {
                 throw new Error(`Dependencies must be an array! object ${dependencyName} file dependencies is not an array`);
