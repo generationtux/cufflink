@@ -61,13 +61,13 @@ describe('Create command tests', () => {
         createCommand.run();
 
         expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify({
-            'Account': {
+            'account': {
                 'id': 1,
                 'firstName': 'Bob',
                 'lastName': 'Jones',
                 'email': 'bob@jones.com',
             },
-            'Contact': {
+            'contact': {
                 'id': 1,
                 'firstName': 'Bob',
                 'lastName': 'Jones',
