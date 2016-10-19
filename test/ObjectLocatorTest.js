@@ -17,14 +17,19 @@ describe('Object Locator Tests', () => {
     });
 
     it('should return error on json file being empty', () => {
-        let obj = new objLoc(fs, "BadCart");
-        expect(obj.run).to.throw(Error);
+        let obj = new objLoc(fs, "BadCustomer");
+        expect(() => {
+            obj.run()
+        }).to.throw("Json for the file BadCustomer must have a dependency array, if none provide a blank array");
     });
 
 
     it('should return error on json file not having dependencies', () => {
         let obj = new objLoc(fs, "BadCart");
-        expect(obj.run).to.throw(Error);
+        expect(() => {
+            obj.run()
+        }).to.throw("Dependencies must be an array! object BadCart file" +
+            " dependencies is not an array");
     });
 
 });

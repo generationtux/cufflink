@@ -15,13 +15,12 @@ class ObjectLocator {
     loadAllObjects(dependencyName) {
         let fileData = this.fs.readFileSync(process.cwd() + `/${this.objectDirectoryName}/${dependencyName}.json`);
         let fileJson = {};
-        if (fileData != null) {
+        if (fileData != null || fileData.toString().length == 0) {
             fileJson = JSON.parse(fileData);
-        } else {
-            throw new Error(`File data for object ${dependencyName} is null`);
         }
         if (fileJson != null && fileJson != {}) {
-            if (!fileJson.dependencies) {
+            console.log(fileJson.dependencies);
+            if (fileJson.dependencies == null) {
                 throw new Error(`Json for the file ${dependencyName} must have a dependency array, if none provide a blank array`);
             }
             let dependencies = fileJson.dependencies;

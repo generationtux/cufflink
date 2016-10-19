@@ -8,5 +8,6 @@
       "name": "customerId",
       "type": "int"
     }
-  ]
+  ],
+  "dependencies": "test"
 }
