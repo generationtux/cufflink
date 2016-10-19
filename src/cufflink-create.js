@@ -12,6 +12,5 @@ let dependencyGraph = new DependencyGraph(objects);
 let driverLocator = new DriverLocator(fs, process.cwd() + "/drivers/");
 let createCommand = new CreateCommand(dependencyGraph,driverLocator,fs);
 createCommand.run().then(() => {
-    console.log("ALL IS COMPLETE");
 });
 

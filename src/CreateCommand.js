@@ -6,13 +6,15 @@ class CreateCommand {
         this.fs = fs;
         this.driversToExecute = [];
         process.results = [];
-        console.log(process);
+        this.completed = () => {
+            this.fs.writeFileSync('./seededData.json', JSON.stringify(process.results));
+        }
     }
 
     runRecursive(promise = null) {
         if(this.driversToExecute.length == 0){
             return promise.then((results) => {
-                process.results.push(results);
+                this.completed();
             });
         }
 
@@ -36,7 +38,7 @@ class CreateCommand {
             this.driversToExecute.push(driver);
         });
         return this.runRecursive().then(() => {
-            this.fs.writeFileSync('./seededData.json', JSON.stringify(process.results));
+            // this.fs.writeFileSync('./seededData.json', JSON.stringify(process.results));
         });
     }
 
