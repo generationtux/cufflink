@@ -10,38 +10,44 @@ describe('Create command tests', () => {
 
         let DependencyGraph = {
             run: function () {
-                return ['Account', 'Contact']
+                return [ 'Account', 'Contact' ]
             }
         };
 
         let AccountDriver = {
             create: function () {
-                return ({
-                    'type': 'account',
-                    'properties': {
-                        'id': 1,
-                        'firstName': 'Bob',
-                        'lastName': 'Jones',
-                        'email': 'bob@jones.com'
-                    }
+
+                return new Promise((resolve) => {
+                    resolve({
+                        'type': 'account',
+                        'properties': {
+                            'id': 1,
+                            'firstName': 'Bob',
+                            'lastName': 'Jones',
+                            'email': 'bob@jones.com'
+                        }
+                    });
                 });
             }
         };
 
         let ContactDriver = {
             create: function () {
-                return ({
-                    'type': 'contact',
-                    'properties': {
-                        'id': 1,
-                        'firstName': 'Bob',
-                        'lastName': 'Jones',
-                        'email': 'bob@jones.com',
-                        'accountId': 1
-                    }
+
+                return new Promise((resolve) => {
+                    resolve({
+                        'type': 'contact',
+                        'properties': {
+                            'id': 1,
+                            'firstName': 'Bob',
+                            'lastName': 'Jones',
+                            'email': 'bob@jones.com',
+                            'accountId': 1
+                        }
+                    });
                 });
             }
-        };
+        }
 
         let drivers = {
             'account': AccountDriver,
@@ -64,28 +70,29 @@ describe('Create command tests', () => {
 
         let createCommand = new CreateCommand(DependencyGraph, DriverLocator, fs);
 
-        createCommand.run();
+        createCommand.run().then(() => {
+            expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
+                {
+                    'type': 'account',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com'
+                    }
+                },
+                {
+                    'type': 'contact',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com',
+                        'accountId': 1
+                    }
+                }
+            ]));
+        });
 
-        expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify([
-            {
-                'type': 'account',
-                'properties': {
-                    'id': 1,
-                    'firstName': 'Bob',
-                    'lastName': 'Jones',
-                    'email': 'bob@jones.com'
-                }
-            },
-            {
-                'type': 'contact',
-                'properties': {
-                    'id': 1,
-                    'firstName': 'Bob',
-                    'lastName': 'Jones',
-                    'email': 'bob@jones.com',
-                    'accountId': 1
-                }
-            }
-        ]));
     });
 });
