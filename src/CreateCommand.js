@@ -11,19 +11,17 @@ class CreateCommand {
         }
     }
 
-    runRecursive(promise = null) {
+    runRecursive() {
         if(this.driversToExecute.length == 0){
-            return promise.then((results) => {
+            return new Promise((resolve) => {
                 this.completed();
+                resolve(true);
             });
         }
-
-        let driverToExecute = this.driversToExecute[0];
-        promise = driverToExecute.create();
-        return promise.then((results) => {
+        return this.driversToExecute[0].create().then((results) => {
             this.driversToExecute.shift();
             process.results.push(results);
-            this.runRecursive(promise);
+            this.runRecursive();
         })
     }
 
@@ -37,9 +35,7 @@ class CreateCommand {
             let driver = drivers[lowerElement];
             this.driversToExecute.push(driver);
         });
-        return this.runRecursive().then(() => {
-            // this.fs.writeFileSync('./seededData.json', JSON.stringify(process.results));
-        });
+        return this.runRecursive();
     }
 
 }

@@ -1,1 +1,0 @@
-[{"type":"customer","properties":{"name":"Bob Dole"}},{"type":"cart","properties":{"items":["Bob Dole"]}},{"type":"item","properties":{"name":"Bob Dole","price":0.01}}]
