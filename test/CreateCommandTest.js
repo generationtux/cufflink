@@ -16,32 +16,38 @@ describe('Create command tests', () => {
 
         let AccountDriver = {
             create: function () {
-                return ({
-                    'type': 'account',
-                    'properties': {
-                        'id': 1,
-                        'firstName': 'Bob',
-                        'lastName': 'Jones',
-                        'email': 'bob@jones.com'
-                    }
+
+                return new Promise((resolve) => {
+                    resolve({
+                        'type': 'contact',
+                        'properties': {
+                            'id': 1,
+                            'firstName': 'Bob',
+                            'lastName': 'Jones',
+                            'email': 'bob@jones.com'
+                        }
+                    });
                 });
             }
         };
 
         let ContactDriver = {
             create: function () {
-                return ({
-                    'type': 'contact',
-                    'properties': {
-                        'id': 1,
-                        'firstName': 'Bob',
-                        'lastName': 'Jones',
-                        'email': 'bob@jones.com',
-                        'accountId': 1
-                    }
+
+                return new Promise((resolve) => {
+                    resolve({
+                        'type': 'contact',
+                        'properties': {
+                            'id': 1,
+                            'firstName': 'Bob',
+                            'lastName': 'Jones',
+                            'email': 'bob@jones.com',
+                            'accountId': 1
+                        }
+                    });
                 });
             }
-        };
+        }
 
         let drivers = {
             'account': AccountDriver,

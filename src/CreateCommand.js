@@ -4,20 +4,32 @@ class CreateCommand {
         this.dependencyGraph = dependencyGraph;
         this.driverLocator = driverLocator;
         this.fs = fs;
+        this.driversToExecute = [];
+        process.results = [];
+    }
+
+    runRecursive() {
+        let driverToExecute = this.driversToExcute[0];
+        return driverToExecute.create().then((results) => {
+            this.driversToExecute.shift();
+            process.results.append(results);
+            this.runRecursive();
+        })
     }
 
     run() {
         let graph = this.dependencyGraph.run();
         let drivers = this.driverLocator.drivers();
 
-        let result = [];
 
         graph.forEach((graphElement) => {
-            let driver = drivers[graphElement.toLowerCase()];
-            result.push(driver.create());
+            let lowerElement = graphElement.toLowerCase();
+            let driver = drivers[lowerElement];
+            this.driversToExecute.push(driver);
         });
-
-        this.fs.writeFileSync('./seededData.json', JSON.stringify(result));
+        this.runRecursive().then(() => {
+            this.fs.writeFileSync('./seededData.json', JSON.stringify(process.results));
+        });
     }
 
 }
