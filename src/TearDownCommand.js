@@ -39,4 +39,4 @@ class TearDownCommand {
     }
 }
 
-module.exports = TearDownCommand;
+module.exports.TearDownCommand = TearDownCommand;
