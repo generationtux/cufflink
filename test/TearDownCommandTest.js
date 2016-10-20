@@ -2,7 +2,7 @@
 
 let expect = require('chai').expect;
 
-let TearDownCommand = require('../src/TearDownCommand').TearDownCommand;
+let TearDownCommand = require('../src/TearDownCommand');
 
 describe('Tear down command tests', () => {
     it("should throw an error when a seeded data json file doesn't exist", () =>{
@@ -28,9 +28,9 @@ describe('Tear down command tests', () => {
         };
 
         let tearDownCommand = new TearDownCommand(
-            './path/to/seed.json',
             driverLocator,
-            fsMock
+            fsMock,
+            './path/to/seed.json'
         );
 
         expect(tearDownCommand.run.bind(tearDownCommand)).to.throw(
@@ -84,9 +84,9 @@ describe('Tear down command tests', () => {
         };
 
         let tearDownCommand = new TearDownCommand(
-            './path/to/seed.json',
             driverLocator,
-            fsMock
+            fsMock,
+            './path/to/seed.json'
         );
 
         tearDownCommand.run().then(() => {
