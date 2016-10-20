@@ -7,6 +7,9 @@ let fsMock = require('mock-fs');
 let TearDownCommand = require('../src/TearDownCommand');
 
 describe('Tear down command tests', () => {
+
+    after(fsMock.restore);
+
     it("should throw an error when a seeded data json file doesn't exist", () =>{
         let drivers = {};
 
@@ -15,6 +18,22 @@ describe('Tear down command tests', () => {
                 return drivers;
             }
         };
+
+        let tearDownCommand = new TearDownCommand(
+            driverLocator,
+            fs,
+            './path/to/seed.json'
+        );
+
+        expect(tearDownCommand.run.bind(tearDownCommand)).to.throw(
+            'ENOENT: no such file or directory, open \'./path/to/seed.json\''
+        );
+
+    });
+
+    it('should throw an error when there is no driver for a seeded object', () => {
+
+        let drivers = {};
 
         fsMock({
             'seededData.json': JSON.stringify([
@@ -25,16 +44,21 @@ describe('Tear down command tests', () => {
                     }
                 }
             ])
-        })
+        });
+
+        let driverLocator = {
+            drivers: function () {
+                return drivers;
+            }
+        };
 
         let tearDownCommand = new TearDownCommand(
             driverLocator,
-            fs,
-            './path/to/seed.json'
+            fs
         );
 
         expect(tearDownCommand.run.bind(tearDownCommand)).to.throw(
-            'Error: ENOENT, no such file or directory \'./path/to/seed.json\''
+            'Seeded data file does not contain a type that you have a driver for'
         );
 
     });
