@@ -1,5 +1,4 @@
 language: node_js
-
 node_js:
   - stable
 
@@ -14,5 +13,12 @@ notifications:
   email:
     on_success: never
     on_failure: always
+
+deploy:
+  provider: npm
+  on:
+    tags: true
+  api_key:
+    secure: EiwfS0ASYeS7/qr/plQsdjNoj5eowHv9M4cEOIecMTcCtbTqobWgWdzDzc5sGvOkoOd2vuobLKTPN0xn4YRJJqW89W+tYAZrang6Qz6uDEdVUmsoWwjujOn1Ya3Dwj6k7ONfq3fRRKByiiMD619bHVkiWb7bPnHEdEKV0+LXbnXaNtiL7ja9HIfRPOXyLTB9MY4o4APj3G0VDZ7bYatgndsM2ehm0wEoS3yJ6WLMI420XPO526WD8XfsxduYJ03+QiZs0m4QA09Nb7JyCQa/zsRnxY5qlgbdVVMSDZAmJeCLOzJMgRvmdnl71f/nmGfNIS0M6Ylxx1i5ic9V9GPcs1hO901iTBOjjXNWEjQ4tZHVj8qORx5m7q9YOrMMVauanreD+v0HDrWbk1A2exLO3QMyoQOJuU4MruzWp6lmURgbgXdKLyLl5cfQrfGxR6flmQWaOZB2xBVgbVl8TvdB1tCihsTvrgJqJ0JMba7EQ1DjHVPtQ/Zsu6u6VGW/pFjuGg/ytyPyalIiEKOj7nYGSLfhyqSvKKbrQGWHDnLMMhWNI9qtNQegZCy1QCj6Htp+B2UY1enfXvY9mFiCfgyc1JjWMfgW25o7BQtQhGbtz+2kskGfC4LrLfJ2bVm2cfNpNPJAdE7uZ0//si4x8R91gNO99aaC73nvz5zjGzHwhMw=
 
 after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
