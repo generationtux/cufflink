@@ -1,12 +1,6 @@
 'use strict'
 
-let chai = require('chai');
-let spies = require('chai-spies');
-
-chai.use(spies);
-
-let should = chai.should();
-let expect = chai.expect;
+let expect = require('chai').expect;
 
 let TearDownCommand = require('../src/TearDownCommand').TearDownCommand;
 
