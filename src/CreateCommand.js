@@ -22,7 +22,7 @@ class CreateCommand {
             this.driversToExecute.shift();
             process.results.push(results);
             this.runRecursive();
-        })
+        });
     }
 
     run() {

@@ -1,12 +1,6 @@
 'use strict'
 
-let chai = require('chai');
-let spies = require('chai-spies');
-
-chai.use(spies);
-
-let should = chai.should();
-let expect = chai.expect;
+let expect = require('chai').expect;
 
 let TearDownCommand = require('../src/TearDownCommand').TearDownCommand;
 
@@ -47,12 +41,19 @@ describe('Tear down command tests', () => {
 
     it('should destroy all the objects in the dependency chain',() => {
 
-        let accountDriverSpy = chai.spy.object(['tearDown']);
-        let contactDriverSpy = chai.spy.object(['tearDown']);
-
         let drivers = {
-            'account': accountDriverSpy,
-            'contact': contactDriverSpy
+            'account': {
+                type: 'account',
+                tearDown: () => {
+                    return new Promise((resolve) => { resolve(); });
+                }
+            },
+            'contact': {
+                type: 'contact',
+                tearDown: () => {
+                    return new Promise((resolve) => { resolve(); });
+                }
+            }
         };
 
         let driverLocator = {
@@ -88,9 +89,8 @@ describe('Tear down command tests', () => {
             fsMock
         );
 
-        tearDownCommand.run();
-
-        accountDriverSpy.tearDown.should.have.been.called.once;
-        contactDriverSpy.tearDown.should.have.been.called.once;
+        tearDownCommand.run().then(() => {
+            expect(tearDownCommand.driversToExecute.length).to.be.equal(0);
+        });
     });
 });
