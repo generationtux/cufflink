@@ -12,6 +12,7 @@ Cufflink is a simple npm package to help seed data for API tests. Cufflink will 
 
 ```
 $ cufflink create your-object
+$ cufflink teardown [optional seeded file path]
 ```
 
 Highlights

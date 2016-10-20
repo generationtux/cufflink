@@ -1,5 +1,6 @@
 class TearDownCommand {
-    constructor(pathToJsonFile, driverLocator, fs) {
+
+    constructor(driverLocator, fs, pathToJsonFile = './seededData.json') {
         this.pathToJsonFile = pathToJsonFile;
         this.driverLocator = driverLocator;
         this.fs = fs;
@@ -39,4 +40,4 @@ class TearDownCommand {
     }
 }
 
-module.exports.TearDownCommand = TearDownCommand;
+module.exports = TearDownCommand;
