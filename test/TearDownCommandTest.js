@@ -1,6 +1,9 @@
 'use strict'
 
+let Buffer = require('buffer').Buffer;
 let expect = require('chai').expect;
+let fs = require('fs');
+let fsMock = require('mock-fs');
 
 let TearDownCommand = require('../src/TearDownCommand');
 
@@ -14,27 +17,25 @@ describe('Tear down command tests', () => {
             }
         };
 
-        let fsMock = {
-            readFileSync: function(){
-                return [
-                    {
-                        "type": "herpderp",
-                        "properties": {
-                            "name": "Bob Dole"
-                        }
+        fsMock({
+            'seededData.json': JSON.stringify([
+                {
+                    "type": "herpderp",
+                    "properties": {
+                        "name": "Bob Dole"
                     }
-                ];
-            }
-        };
+                }
+            ])
+        })
 
         let tearDownCommand = new TearDownCommand(
             driverLocator,
-            fsMock,
+            fs,
             './path/to/seed.json'
         );
 
         expect(tearDownCommand.run.bind(tearDownCommand)).to.throw(
-            "Seeded data file does not contain a type that you have a driver for"
+            'Error: ENOENT, no such file or directory \'./path/to/seed.json\''
         );
 
     });
@@ -62,35 +63,33 @@ describe('Tear down command tests', () => {
             }
         };
 
-        let fsMock = {
-            readFileSync: function(){
-                return [
-                    {
-                        "type": "contact",
-                        "properties": {
-                            "name": "Bob Dole"
-                        }
-                    },
-                    {
-                        "type": "account",
-                        "properties": {
-                            "items": [
-                                "Pizza"
-                            ]
-                        }
+        fsMock({
+            'path/to/seed.json': JSON.stringify([
+                {
+                    "type": "contact",
+                    "properties": {
+                        "name": "Bob Dole"
                     }
-                ];
-            }
-        };
+                },
+                {
+                    "type": "account",
+                    "properties": {
+                        "items": [
+                            "Pizza"
+                        ]
+                    }
+                }
+            ])
+        });
 
         let tearDownCommand = new TearDownCommand(
             driverLocator,
-            fsMock,
+            fs,
             './path/to/seed.json'
         );
 
         tearDownCommand.run().then(() => {
-            expect(tearDownCommand.driversToExecute.length).to.be.equal(0);
+            expect(tearDownCommand.recordsToTearDown.length).to.be.equal(0);
         });
     });
 });
