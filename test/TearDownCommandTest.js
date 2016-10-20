@@ -1,6 +1,5 @@
 'use strict'
 
-let Buffer = require('buffer').Buffer;
 let expect = require('chai').expect;
 let fs = require('fs');
 let fsMock = require('mock-fs');
