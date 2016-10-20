@@ -16,6 +16,7 @@ notifications:
 
 deploy:
   provider: npm
+  email: "louisville.devs@seven-26.com"
   on:
     tags: true
   api_key:
