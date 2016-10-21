@@ -1,10 +1,15 @@
 'use strict'
 
 let expect = require('chai').expect;
+let fs = require('fs');
+let fsMock = require('mock-fs');
 
 let TearDownCommand = require('../src/TearDownCommand');
 
 describe('Tear down command tests', () => {
+
+    after(fsMock.restore);
+
     it("should throw an error when a seeded data json file doesn't exist", () =>{
         let drivers = {};
 
@@ -14,27 +19,46 @@ describe('Tear down command tests', () => {
             }
         };
 
-        let fsMock = {
-            readFileSync: function(){
-                return [
-                    {
-                        "type": "herpderp",
-                        "properties": {
-                            "name": "Bob Dole"
-                        }
+        let tearDownCommand = new TearDownCommand(
+            driverLocator,
+            fs,
+            './path/to/seed.json'
+        );
+
+        expect(tearDownCommand.run.bind(tearDownCommand)).to.throw(
+            'ENOENT: no such file or directory, open \'./path/to/seed.json\''
+        );
+
+    });
+
+    it('should throw an error when there is no driver for a seeded object', () => {
+
+        let drivers = {};
+
+        fsMock({
+            'seededData.json': JSON.stringify([
+                {
+                    "type": "herpderp",
+                    "properties": {
+                        "name": "Bob Dole"
                     }
-                ];
+                }
+            ])
+        });
+
+        let driverLocator = {
+            drivers: function () {
+                return drivers;
             }
         };
 
         let tearDownCommand = new TearDownCommand(
             driverLocator,
-            fsMock,
-            './path/to/seed.json'
+            fs
         );
 
         expect(tearDownCommand.run.bind(tearDownCommand)).to.throw(
-            "Seeded data file does not contain a type that you have a driver for"
+            'Seeded data file does not contain a type that you have a driver for'
         );
 
     });
@@ -62,35 +86,33 @@ describe('Tear down command tests', () => {
             }
         };
 
-        let fsMock = {
-            readFileSync: function(){
-                return [
-                    {
-                        "type": "contact",
-                        "properties": {
-                            "name": "Bob Dole"
-                        }
-                    },
-                    {
-                        "type": "account",
-                        "properties": {
-                            "items": [
-                                "Pizza"
-                            ]
-                        }
+        fsMock({
+            'path/to/seed.json': JSON.stringify([
+                {
+                    "type": "contact",
+                    "properties": {
+                        "name": "Bob Dole"
                     }
-                ];
-            }
-        };
+                },
+                {
+                    "type": "account",
+                    "properties": {
+                        "items": [
+                            "Pizza"
+                        ]
+                    }
+                }
+            ])
+        });
 
         let tearDownCommand = new TearDownCommand(
             driverLocator,
-            fsMock,
+            fs,
             './path/to/seed.json'
         );
 
         tearDownCommand.run().then(() => {
-            expect(tearDownCommand.driversToExecute.length).to.be.equal(0);
+            expect(tearDownCommand.recordsToTearDown.length).to.be.equal(0);
         });
     });
 });
