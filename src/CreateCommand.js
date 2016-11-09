@@ -7,7 +7,7 @@ class CreateCommand {
         this.driversToExecute = [];
         process.results = [];
         this.completed = () => {
-            this.fs.writeFileSync('./seededData.json', JSON.stringify(process.results));
+            this.fs.writeFileSync('./seededData.json', JSON.stringify([{ "data" : process.results }]));
         }
     }
 
