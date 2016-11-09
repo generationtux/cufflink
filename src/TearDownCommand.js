@@ -24,7 +24,7 @@ class TearDownCommand {
         let fileContents;
 
         fileContents = this.fs.readFileSync(path);
-        return JSON.parse(fileContents, 'utf8');
+        return JSON.parse(fileContents, 'utf8')[0].data;
     }
 
     run() {
