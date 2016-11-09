@@ -36,14 +36,14 @@ describe('Tear down command tests', () => {
         let drivers = {};
 
         fsMock({
-            'seededData.json': JSON.stringify([
+            'seededData.json': JSON.stringify([ { "data": [
                 {
                     "type": "herpderp",
                     "properties": {
                         "name": "Bob Dole"
                     }
                 }
-            ])
+            ]}])
         });
 
         let driverLocator = {
@@ -87,7 +87,7 @@ describe('Tear down command tests', () => {
         };
 
         fsMock({
-            'path/to/seed.json': JSON.stringify([
+            'path/to/seed.json': JSON.stringify([{"data" : [
                 {
                     "type": "contact",
                     "properties": {
@@ -102,7 +102,7 @@ describe('Tear down command tests', () => {
                         ]
                     }
                 }
-            ])
+            ]}])
         });
 
         let tearDownCommand = new TearDownCommand(
