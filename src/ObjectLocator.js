@@ -23,7 +23,7 @@ class ObjectLocator {
                 throw new Error(`Json for the file ${dependencyName} must have a dependency array, if none provide a blank array`);
             }
             let dependencies = fileJson.dependencies;
-            if (dependencies instanceof Array) {
+            if (Array.isArray(dependencies)) {
                 dependencies.forEach((dependency) => {
                     if (this.objects.find(x => x.name == dependency) == null) {
                         this.loadAllObjects(dependency);
