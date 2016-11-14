@@ -6,7 +6,7 @@ A command tool to help generate seed data based on your object schema in your ap
 
 Cufflink is a simple npm package to help seed data for API tests. Cufflink will seed your databases and create a json file with the results for a consistent way to test your API.
 
-1. Describe your data scheme and dependencies through objects 
+1. Describe your data scheme and dependencies through objects
 3. Add drivers for those objects
 4. Run following command
 
@@ -75,6 +75,19 @@ The `drivers` directory will contain the drivers to persist your objects to your
 Driver's names should be the same as the associated object
 
 Ex: The `cart` object above should have a corresponding `cart` driver that resides in the `drivers` directory
+
+Using the API
+-------------
+
+Use the Cufflink API directly in your programs like this:
+
+```
+let cufflink = require('cufflink/api');
+
+cufflink.create('measurement').then((result) => {
+    cufflink.tearDown(result);
+});
+```
 
 Testing
 -------

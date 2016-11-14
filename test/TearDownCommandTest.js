@@ -115,4 +115,58 @@ describe('Tear down command tests', () => {
             expect(tearDownCommand.recordsToTearDown.length).to.be.equal(0);
         });
     });
+
+    it('should accept an array of object to tear down', () => {
+
+        let drivers = {
+            'account': {
+                type: 'account',
+                tearDown: () => {
+                    return new Promise((resolve) => { resolve(); });
+                }
+            },
+            'contact': {
+                type: 'contact',
+                tearDown: () => {
+                    return new Promise((resolve) => { resolve(); });
+                }
+            }
+        };
+
+        let driverLocator = {
+            drivers: function () {
+                return drivers;
+            }
+        };
+
+        let tearDownCommand = new TearDownCommand(
+            driverLocator
+        );
+
+        let tearDownThese = [
+            {
+                'type': 'account',
+                'properties': {
+                    'id': 1,
+                    'firstName': 'Bob',
+                    'lastName': 'Jones',
+                    'email': 'bob@jones.com'
+                }
+            },
+            {
+                'type': 'contact',
+                'properties': {
+                    'id': 1,
+                    'firstName': 'Bob',
+                    'lastName': 'Jones',
+                    'email': 'bob@jones.com',
+                    'accountId': 1
+                }
+            }
+        ];
+
+        tearDownCommand.run(tearDownThese).then(() => {
+            expect(tearDownCommand.recordsToTearDown.length).to.be.equal(0);
+        });
+    });
 });

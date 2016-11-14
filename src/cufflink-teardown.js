@@ -9,5 +9,4 @@ let driverLocator = new DriverLocator(fs, process.cwd() + "/drivers/");
 let tearDownCommand = new TearDownCommand(driverLocator, fs, filePath);
 
 tearDownCommand.run().then(() => {
-
 });

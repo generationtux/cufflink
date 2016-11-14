@@ -27,8 +27,11 @@ class TearDownCommand {
         return JSON.parse(fileContents, 'utf8')[0].data;
     }
 
-    run() {
-        let seededData = this.readFile(this.pathToJsonFile);
+    run(seededData) {
+        if (typeof seededData === 'undefined') {
+            seededData = this.readFile(this.pathToJsonFile);
+        }
+
         seededData.reverse();
 
         let drivers = this.driverLocator.drivers();
