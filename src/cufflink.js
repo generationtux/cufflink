@@ -18,4 +18,3 @@ program
     .command('create [dataObject]', 'Generate seed data').alias('c')
     .command('teardown', 'Tear down seed data').alias('t')
     .parse(process.argv);
-

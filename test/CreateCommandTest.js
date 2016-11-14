@@ -91,7 +91,7 @@ describe('Create command tests', () => {
             }
         }
 
-        let createCommand = new CreateCommand(DependencyGraph, DriverLocator, fs);
+        let createCommand = new CreateCommand(DependencyGraph, DriverLocator, fs, true);
 
         createCommand.run().then(() => {
             expect(dataExpectedToBeWrittenToFile).to.equal(JSON.stringify(expectedResult));
@@ -100,9 +100,8 @@ describe('Create command tests', () => {
     });
 
     it('should return results as an array', () => {
-        let f = (results) => { return results };
 
-        let createCommand = new CreateCommand(DependencyGraph, DriverLocator, null, f);
+        let createCommand = new CreateCommand(DependencyGraph, DriverLocator);
 
         createCommand.run().then((r) => {
             expect(JSON.stringify(r)).to.equal(JSON.stringify(expectedResult));

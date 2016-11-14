@@ -7,10 +7,10 @@ class CreateCommand {
         this.driversToExecute = [];
         process.results = [];
 
-        if (typeof onCompletion === 'undefined') {
+        if (onCompletion) {
             this.completed = this.writeResultsToFile;
         } else {
-            this.completed = onCompletion;
+            this.completed = (results) => { return results };
         }
     }
 
