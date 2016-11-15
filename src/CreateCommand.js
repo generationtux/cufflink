@@ -45,6 +45,23 @@ class CreateCommand {
         return this.runRecursive();
     }
 
+    runSync() {
+        let graph = this.dependencyGraph.run();
+        let drivers = this.driverLocator.drivers();
+        let results = [];
+
+        graph.forEach((graphElement) => {
+            let lowerElement = graphElement.toLowerCase();
+            let driver = drivers[lowerElement];
+            this.driversToExecute.push(driver);
+        });
+
+        this.driversToExecute.forEach((driver) => {
+            results.push(driver.create());
+        });
+
+        return results;
+    }
 }
 
 module.exports = CreateCommand;
