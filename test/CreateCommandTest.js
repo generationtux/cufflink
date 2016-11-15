@@ -107,4 +107,54 @@ describe('Create command tests', () => {
             expect(JSON.stringify(r)).to.equal(JSON.stringify(expectedResult));
         });
     });
+
+    it('should synchronously seed objects', () => {
+
+        let AccountDriver = {
+            create: function () {
+
+                return {
+                        'type': 'account',
+                        'properties': {
+                            'id': 1,
+                            'firstName': 'Bob',
+                            'lastName': 'Jones',
+                            'email': 'bob@jones.com'
+                        }
+                    };
+            }
+        };
+
+        let ContactDriver = {
+            create: function () {
+
+                return {
+                        'type': 'contact',
+                        'properties': {
+                            'id': 1,
+                            'firstName': 'Bob',
+                            'lastName': 'Jones',
+                            'email': 'bob@jones.com',
+                            'accountId': 1
+                        }
+                    };
+            }
+        }
+
+        let drivers = {
+            'account': AccountDriver,
+            'contact': ContactDriver
+        };
+
+        let DriverLocator = {
+            drivers: function () {
+                return drivers;
+            }
+        }
+
+        let createCommand = new CreateCommand(DependencyGraph, DriverLocator);
+
+        let results = createCommand.runSync();
+        expect(JSON.stringify(results)).to.equal(JSON.stringify(expectedResult));
+    });
 });

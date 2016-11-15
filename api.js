@@ -6,7 +6,7 @@ let TearDownCommand = require('./src/TearDownCommand');
 let fs = require('fs');
 
 module.exports = {
-    create: (objectName) => {
+    create: (objectName, sync) => {
 
         let objectLocator = new ObjectLocator(fs, objectName);
         let objects = objectLocator.run();
@@ -15,7 +15,15 @@ module.exports = {
         let driverLocator = new DriverLocator(fs, process.cwd() + "/drivers/");
         let createCommand = new CreateCommand(dependencyGraph, driverLocator);
 
-        return createCommand.run();
+        if (sync) {
+            return createCommand.runSync();
+        } else {
+            return createCommand.run();
+        }
+    },
+
+    createSync: (objectName) => {
+        return this.create(objectName, true);
     },
 
     tearDown: (objects) => {
