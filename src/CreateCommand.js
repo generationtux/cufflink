@@ -48,7 +48,6 @@ class CreateCommand {
     runSync() {
         let graph = this.dependencyGraph.run();
         let drivers = this.driverLocator.drivers();
-        let results = [];
 
         graph.forEach((graphElement) => {
             let lowerElement = graphElement.toLowerCase();
@@ -57,10 +56,10 @@ class CreateCommand {
         });
 
         this.driversToExecute.forEach((driver) => {
-            results.push(driver.create());
+            process.results.push(driver.create());
         });
 
-        return results;
+        return process.results;
     }
 }
 

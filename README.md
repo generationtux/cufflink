@@ -89,6 +89,12 @@ cufflink.create('measurement').then((result) => {
 });
 ```
 
+Cufflink also has a `createSync` feature that doesn't use Promises.
+
+```
+let objects = cufflink.createSync('measurement');
+```
+
 Testing
 -------
 
