@@ -23,7 +23,7 @@ module.exports = {
     },
 
     createSync: (objectName) => {
-        return this.create(objectName, true);
+        return module.exports.create(objectName, true);
     },
 
     tearDown: (objects) => {
