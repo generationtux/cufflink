@@ -13,7 +13,7 @@ class ObjectLocator {
     }
 
     loadAllObjects(dependencyName) {
-        let fileData = this.fs.readFileSync(process.cwd() + `/${this.objectDirectoryName}/${dependencyName}.json`);
+        let fileData = this.fs.readFileSync(process.cwd() + `/${this.objectDirectoryName}/${dependencyName.toLowerCase()}.json`);
         let fileJson = {};
         if (fileData != null || fileData.toString().length == 0) {
             fileJson = JSON.parse(fileData);
