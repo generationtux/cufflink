@@ -11,6 +11,13 @@ describe('Object Locator Tests', () => {
         expect(JSON.stringify(json)).to.contain('Customer');
     });
 
+    it('should locate object with no dependencies', () => {
+        let obj = new objLoc(fs, "Customer");
+        let json = obj.run();
+        expect(json[0].metadata.dependencies).to.be.instanceof(Array);
+        expect(json[0].metadata.dependencies).to.be.empty;
+    });
+
     it('should return error on json file not existing', () => {
         let obj = new objLoc(fs, "BadItem");
         expect(obj.run).to.throw(Error);
