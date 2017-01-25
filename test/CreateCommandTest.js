@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 let expect = require('chai').expect;
 let DepGraph = require('dependency-graph').DepGraph;
@@ -8,13 +8,13 @@ let CreateCommand = require('../src/CreateCommand');
 describe('Create command tests', () => {
 
     let DependencyGraph = {
-        run: function () {
-            return [ 'Account', 'Contact' ]
+        run: function() {
+            return ['Account', 'Contact'];
         }
     };
 
     let AccountDriver = {
-        create: function () {
+        create: function() {
 
             return new Promise((resolve) => {
                 resolve({
@@ -31,7 +31,7 @@ describe('Create command tests', () => {
     };
 
     let ContactDriver = {
-        create: function () {
+        create: function() {
 
             return new Promise((resolve) => {
                 resolve({
@@ -54,42 +54,39 @@ describe('Create command tests', () => {
     };
 
     let DriverLocator = {
-        drivers: function () {
+        drivers: function() {
             return drivers;
         }
     }
 
-    let expectedResult = [
-        {
-            'type': 'account',
-            'properties': {
-                'id': 1,
-                'firstName': 'Bob',
-                'lastName': 'Jones',
-                'email': 'bob@jones.com'
-            }
-        },
-        {
-            'type': 'contact',
-            'properties': {
-                'id': 1,
-                'firstName': 'Bob',
-                'lastName': 'Jones',
-                'email': 'bob@jones.com',
-                'accountId': 1
-            }
+    let expectedResult = [{
+        'type': 'account',
+        'properties': {
+            'id': 1,
+            'firstName': 'Bob',
+            'lastName': 'Jones',
+            'email': 'bob@jones.com'
         }
-    ];
+    }, {
+        'type': 'contact',
+        'properties': {
+            'id': 1,
+            'firstName': 'Bob',
+            'lastName': 'Jones',
+            'email': 'bob@jones.com',
+            'accountId': 1
+        }
+    }];
 
     it('should write results from driver to file', () => {
 
         let dataExpectedToBeWrittenToFile;
 
         let fs = {
-            writeFileSync: function (fileName, data) {
+            writeFileSync: function(fileName, data) {
                 dataExpectedToBeWrittenToFile = data;
             }
-        }
+        };
 
         let createCommand = new CreateCommand(DependencyGraph, DriverLocator, fs, true);
 
@@ -111,35 +108,35 @@ describe('Create command tests', () => {
     it('should synchronously seed objects', () => {
 
         let AccountDriver = {
-            create: function () {
+            create: function() {
 
                 return {
-                        'type': 'account',
-                        'properties': {
-                            'id': 1,
-                            'firstName': 'Bob',
-                            'lastName': 'Jones',
-                            'email': 'bob@jones.com'
-                        }
-                    };
+                    'type': 'account',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com'
+                    }
+                };
             }
         };
 
         let ContactDriver = {
-            create: function () {
+            create: function() {
 
                 return {
-                        'type': 'contact',
-                        'properties': {
-                            'id': 1,
-                            'firstName': 'Bob',
-                            'lastName': 'Jones',
-                            'email': 'bob@jones.com',
-                            'accountId': 1
-                        }
-                    };
+                    'type': 'contact',
+                    'properties': {
+                        'id': 1,
+                        'firstName': 'Bob',
+                        'lastName': 'Jones',
+                        'email': 'bob@jones.com',
+                        'accountId': 1
+                    }
+                };
             }
-        }
+        };
 
         let drivers = {
             'account': AccountDriver,
@@ -147,10 +144,10 @@ describe('Create command tests', () => {
         };
 
         let DriverLocator = {
-            drivers: function () {
+            drivers: function() {
                 return drivers;
             }
-        }
+        };
 
         let createCommand = new CreateCommand(DependencyGraph, DriverLocator);
 

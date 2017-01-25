@@ -1,7 +1,6 @@
 let fs = require('fs');
 let counter = 0;
 class CustomerDriver {
-
     create() {
         counter++;
         fs.writeFileSync("./customer.txt", `Created Customer Counter: ${counter}`);
